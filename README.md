@@ -5,7 +5,7 @@ Data backup is a crucial aspect of any system administration in today's digital 
 
 ## The Python Script
 
-The script we are discussing is written in Python and uses the `os`, `posixpath`, `tarfile`, and `boto3` libraries. The script performs two main tasks:
+The script we are discussing is written in Python and uses the `os`, `posixpath`, `tarfile`, `datetime` and `boto3` libraries. The script performs two main tasks:
 
 1. It creates a tar file (`config.tar`) containing all the `.conf` files from the `/etc/httpd/` directory.
 2. It uploads the created tar file to an Amazon S3 bucket.
@@ -33,8 +33,11 @@ The second part of the script uses the `boto3` library to upload the created tar
 The script first checks if the specified bucket exists. The script creates a new bucket with the specified name if it doesn't. Then, the script uploads the tar file to the bucket.
 
 ```python
+# Step 2: Upload the 'config.tar' file to an S3 bucket
 bucket_name = 'cloud-crafter-config-backup'  # Replace with your S3 bucket name
-file_name = 'config.tar'                     # Replace with the desired S3 file name
+current_datetime = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+file_name = 'config-backup-{}.tar'.format(current_datetime)                    
+
 
 s3 = boto3.resource('s3')
 
