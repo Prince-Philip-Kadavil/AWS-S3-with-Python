@@ -5,7 +5,7 @@ Data backup is a crucial aspect of any system administration in today's digital 
 
 ## The Python Script
 
-The script we are discussing is written in Python and uses the `os`, `posixpath`, `shutil`, and `hashlib` libraries. The script performs two main tasks:
+The script we are discussing is written in Python and uses the `os`, `posixpath`, `tarfile`, and `boto3` libraries. The script performs two main tasks:
 
 1. It creates a tar file (`config.tar`) containing all the `.conf` files from the `/etc/httpd/` directory.
 2. It uploads the created tar file to an Amazon S3 bucket.
